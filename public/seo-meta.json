@@ -1,0 +1,136 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.elvion.io/#organization",
+      "name": "Elvion",
+      "url": "https://www.elvion.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.elvion.io/logo.png",
+        "width": 200,
+        "height": 60
+      },
+      "description": "Elvion is a post-AI SEO and search marketing agency helping B2B and SaaS companies convert untapped organic demand into revenue through SEO strategy, content marketing, and Generative Engine Optimization (GEO).",
+      "foundingDate": "2023",
+      "areaServed": "Worldwide",
+      "serviceType": [
+        "SEO Strategy",
+        "Generative Engine Optimization",
+        "B2B Content Marketing",
+        "Technical SEO",
+        "Link Building",
+        "AI Search Optimization"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/elvion",
+        "https://twitter.com/elvion_io"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "url": "https://www.elvion.io/#contact",
+        "availableLanguage": ["English"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.elvion.io/#website",
+      "url": "https://www.elvion.io/",
+      "name": "Elvion - Convert More Demand Into Revenue",
+      "description": "As SEO evolves in the post-AI world, so must the strategy. Adapt to the new era of search marketing and convert untapped demand into revenue.",
+      "publisher": {
+        "@id": "https://www.elvion.io/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.elvion.io/?s={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.elvion.io/#webpage",
+      "url": "https://www.elvion.io/",
+      "name": "Elvion - Convert More Demand Into Revenue",
+      "isPartOf": {
+        "@id": "https://www.elvion.io/#website"
+      },
+      "about": {
+        "@id": "https://www.elvion.io/#organization"
+      },
+      "description": "Elvion helps B2B and SaaS brands adapt to post-AI search and convert untapped organic demand into measurable revenue through SEO and GEO strategies.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.elvion.io/"
+          }
+        ]
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": ["https://www.elvion.io/"]
+        }
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.elvion.io/#service",
+      "name": "Elvion SEO & GEO Services",
+      "provider": {
+        "@id": "https://www.elvion.io/#organization"
+      },
+      "url": "https://www.elvion.io/",
+      "description": "Comprehensive SEO and Generative Engine Optimization services for B2B and SaaS companies looking to grow organic revenue in the post-AI search landscape.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Elvion Service Offerings",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SEO Strategy & Execution",
+              "description": "Full-funnel SEO strategy including technical audits, keyword research, on-page optimization, and performance tracking."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Generative Engine Optimization (GEO)",
+              "description": "Optimize your brand to appear in AI-generated answers from ChatGPT, Gemini, Claude, and Perplexity."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B Content Marketing",
+              "description": "High-intent content strategy and production designed to attract decision-makers and build topical authority."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Link Building & Digital PR",
+              "description": "Acquiring high-quality editorial backlinks through digital PR, partnerships, and authority-building campaigns."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
