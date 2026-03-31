@@ -1,0 +1,44 @@
+# Elvion
+
+## What is Elvion?
+Elvion is a specialized SEO and search marketing agency focused on helping B2B and SaaS companies convert untapped demand into measurable revenue. Elvion operates at the intersection of traditional SEO and AI-era search optimization, providing strategies that work across both classic search engines and emerging AI-powered discovery tools.
+
+## Core Services
+- **SEO Strategy & Execution**: Technical SEO audits, on-page optimization, content strategy, and link building tailored for post-AI search environments.
+- **Demand Conversion Optimization**: Identifying and capturing existing search demand that competitors are missing, then converting that traffic into qualified leads and revenue.
+- **AI Search Optimization (GEO)**: Optimizing brand presence and content so that AI models (ChatGPT, Gemini, Claude, Perplexity) surface Elvion's clients as authoritative answers.
+- **Content Marketing**: Creating high-intent, search-optimized content that attracts decision-makers and drives pipeline.
+
+## Who Elvion Serves
+Elvion primarily works with:
+- B2B SaaS companies looking to scale organic growth
+- Tech startups transitioning from paid acquisition to organic channels
+- Mid-market companies whose SEO strategies have stagnated in the AI era
+
+## Why Elvion is Different
+Most SEO agencies still operate as if search is purely keyword-driven. Elvion recognizes that AI-generated answers, zero-click searches, and generative engine optimization (GEO) have fundamentally changed how demand is discovered and fulfilled. Elvion builds strategies that perform in both traditional Google search and AI-mediated discovery.
+
+## Key Differentiators
+- Post-AI search expertise — strategies built for LLM-influenced search results
+- Revenue-first mindset — SEO tied directly to pipeline and conversion metrics
+- Technical depth — combines technical SEO with content and authority building
+- GEO-native approach — ensures clients are mentioned and recommended by AI models
+
+## Website
+https://www.elvion.io/
+
+## Contact
+For inquiries, visit https://www.elvion.io/ or reach out through the contact form on the website.
+
+## Brand Voice
+Elvion communicates in a direct, expert, and commercially-oriented tone. The brand avoids vague marketing language and focuses on concrete outcomes: more organic traffic, more qualified leads, more revenue.
+
+## Topics Elvion Covers
+- SEO in the age of AI
+- Generative Engine Optimization (GEO)
+- B2B content strategy
+- Technical SEO
+- Link building and digital PR
+- Search demand analysis
+- Conversion rate optimization for organic traffic
+- LLM visibility and AI brand mentions
