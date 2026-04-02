@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import AuthProvider from '@/components/ui/AuthProvider';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
 export const metadata: Metadata = {
   title: 'SEO GEO Platform',
@@ -15,11 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Ovde govorimo aplikaciji da prati da li smo ulogovani */}
-        <AuthProvider>
-          ^
-          {children}
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

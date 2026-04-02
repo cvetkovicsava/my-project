@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   try {
     const { db } = await import("@/db");
     const { users, audits, auditResults } = await import("@/db/schema");
-    const { gte, desc } = await import("drizzle-orm");
+    const { gte, desc, eq } = await import("drizzle-orm");
 
     // Get audits from the last 30 days
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
         createdAt: audits.completedAt,
       })
       .from(auditResults)
-      .innerJoin(audits, (t) => `${t}.audit_id = ${audits.id}`)
+      .innerJoin(audits, eq(auditResults.auditId, audits.id))
       .where(gte(audits.completedAt, thirtyDaysAgo))
       .orderBy(desc(audits.completedAt))
       .limit(50);

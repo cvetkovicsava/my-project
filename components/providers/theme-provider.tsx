@@ -16,12 +16,11 @@ const ThemeContext = createContext<ThemeContextType>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Read saved preference on mount
     const saved = localStorage.getItem('theme') as Theme | null;
-    const initial = saved || 'dark';
+    const initial = saved ?? 'dark';
     setTheme(initial);
     applyTheme(initial);
   }, []);
@@ -44,8 +43,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     applyTheme(next);
   }
 
-  if (!mounted) return <>{children}</>;
-
+  // Always wrap — never skip the Provider
   return (
     <ThemeContext.Provider value={{ theme, toggle }}>
       {children}
