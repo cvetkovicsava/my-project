@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from 'react';
 import {
   Zap, GitBranch, Search, Bot, Sparkles, RefreshCw, CheckCircle2,
   AlertCircle, AlertTriangle, Info, LogOut, ChevronRight, ExternalLink,
-  ArrowUp, FileText, TrendingUp, TrendingDown, Minus
+  ArrowUp, FileText, TrendingUp, TrendingDown, Minus, Settings
 } from 'lucide-react';
 import { AiLoader } from '@/components/ui/ai-loader';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
@@ -829,6 +829,10 @@ ${compSection}
               {session?.user?.name}
             </span>
             <ThemeToggle />
+            <button onClick={() => router.push('/settings')} style={{ color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(79,70,229,0.45)' }}
+              className="transition-opacity hover:opacity-80" title="Podešavanja">
+              <Settings className="w-4 h-4" />
+            </button>
             <button onClick={() => signOut()} style={{ color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(79,70,229,0.45)' }}
               className="transition-opacity hover:opacity-80">
               <LogOut className="w-4 h-4" />
