@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, integer, jsonb, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, integer, jsonb, uuid, boolean } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -6,6 +6,8 @@ export const users = pgTable("users", {
   githubId: text("github_id").unique(),
   githubUsername: text("github_username"),
   githubToken: text("github_token"),
+  emailNotifications: boolean("email_notifications").default(true),
+  weeklyReport: boolean("weekly_report").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

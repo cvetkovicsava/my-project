@@ -4,9 +4,9 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
-  User, Mail, Github, LogOut, Trash2, Shield, Bell,
+  User, Github, LogOut, Trash2, Shield, Bell,
   CheckCircle2, AlertTriangle, ChevronLeft, ExternalLink,
-  Key, Clock, Activity
+  Activity, Check
 } from 'lucide-react';
 import { WovenCanvas } from '@/components/ui/woven-canvas';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
@@ -118,23 +118,61 @@ export default function SettingsPage() {
   const [emailNotifs, setEmailNotifs] = useState(true);
   const [weeklyReport, setWeeklyReport] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [prefsSaved, setPrefsSaved] = useState(false);
   const [stats, setStats] = useState<{ totalAudits: number; lastAudit: string | null } | null>(null);
   const [loadingStats, setLoadingStats] = useState(true);
 
+  const githubId = (session as any)?.githubId;
+
+  // Load preferences from DB
+  useEffect(() => {
+    if (!githubId) return;
+    fetch(`/api/preferences?githubId=${githubId}`)
+      .then(r => r.json())
+      .then(data => {
+        setEmailNotifs(data.emailNotifications ?? true);
+        setWeeklyReport(data.weeklyReport ?? true);
+      })
+      .catch(() => {});
+  }, [githubId]);
+
+  // Save preferences to DB whenever toggles change
+  async function savePrefs(email: boolean, weekly: boolean) {
+    if (!githubId) return;
+    await fetch('/api/preferences', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ githubId, emailNotifications: email, weeklyReport: weekly }),
+    });
+    setPrefsSaved(true);
+    setTimeout(() => setPrefsSaved(false), 2000);
+  }
+
+  function handleEmailToggle(v: boolean) {
+    setEmailNotifs(v);
+    savePrefs(v, weeklyReport);
+  }
+
+  function handleWeeklyToggle(v: boolean) {
+    setWeeklyReport(v);
+    savePrefs(emailNotifs, v);
+  }
+
   // Fetch audit history to compute stats
   useEffect(() => {
-    if (status !== 'authenticated') return;
-    fetch('/api/history')
+    if (status !== 'authenticated' || !githubId) return;
+    fetch(`/api/history?githubId=${githubId}`)
       .then(r => r.json())
-      .then((data: { id: string; createdAt: string }[]) => {
+      .then((data: { history: { id: string; createdAt: string }[] }) => {
+        const h = data.history ?? [];
         setStats({
-          totalAudits: data.length,
-          lastAudit: data[0]?.createdAt ?? null,
+          totalAudits: h.length,
+          lastAudit: h[0]?.createdAt ?? null,
         });
       })
       .catch(() => setStats({ totalAudits: 0, lastAudit: null }))
       .finally(() => setLoadingStats(false));
-  }, [status]);
+  }, [status, githubId]);
 
   if (status === 'loading') return null;
 
@@ -273,7 +311,16 @@ export default function SettingsPage() {
 
         {/* Notifications */}
         <Card>
-          <SectionTitle icon={<Bell size={14} />} label="Notifikacije" />
+          <div className="flex items-center justify-between mb-4">
+            <SectionTitle icon={<Bell size={14} />} label="Notifikacije" />
+            {prefsSaved && (
+              <span className="flex items-center gap-1 text-xs px-2 py-1 rounded-full"
+                style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80', border: '1px solid rgba(74,222,128,0.2)' }}>
+                <Check size={10} />
+                Sačuvano
+              </span>
+            )}
+          </div>
           <div className="space-y-1">
             <div className="flex items-center justify-between py-3"
               style={{ borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}` }}>
@@ -281,14 +328,14 @@ export default function SettingsPage() {
                 <p className="text-sm font-medium" style={{ color: text(0.85) }}>Email notifikacije</p>
                 <p className="text-xs mt-0.5" style={{ color: text(0.4) }}>Primaj obavještenja o završenim auditima</p>
               </div>
-              <Toggle enabled={emailNotifs} onChange={setEmailNotifs} />
+              <Toggle enabled={emailNotifs} onChange={handleEmailToggle} />
             </div>
             <div className="flex items-center justify-between py-3">
               <div>
                 <p className="text-sm font-medium" style={{ color: text(0.85) }}>Sedmični izvještaj</p>
                 <p className="text-xs mt-0.5" style={{ color: text(0.4) }}>Automatski audit svaki ponedjeljak u 9h</p>
               </div>
-              <Toggle enabled={weeklyReport} onChange={setWeeklyReport} />
+              <Toggle enabled={weeklyReport} onChange={handleWeeklyToggle} />
             </div>
           </div>
         </Card>

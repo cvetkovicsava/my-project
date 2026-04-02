@@ -869,6 +869,7 @@ ${compSection}
                 <div key={item.id}
                   className="flex items-center justify-between py-2.5 group cursor-pointer rounded-lg px-2 transition-all"
                   style={{ borderBottom: i < 4 ? `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(99,102,241,0.07)'}` : 'none' }}
+                  onClick={() => router.push(`/audit/${item.id}`)}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(99,102,241,0.04)'}
                   onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
                 >
@@ -895,6 +896,8 @@ ${compSection}
                         GEO {item.geoScore}
                       </span>
                     )}
+                    <ChevronRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-40 transition-opacity"
+                      style={{ color: isDark ? 'white' : '#4f46e5' }} />
                   </div>
                 </div>
               ))}
